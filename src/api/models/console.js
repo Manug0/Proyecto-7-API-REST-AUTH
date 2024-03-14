@@ -6,6 +6,7 @@ const consoleSchema = new mongoose.Schema(
 		añoSalida: { type: Number, required: true },
 		precio: { type: Number, required: true },
 		capacidad: { type: Number, required: true },
+		juegosCompatibles: [{ type: mongoose.Types.ObjectId, required: false, ref: "games" }],
 	},
 	{
 		timestamps: true,

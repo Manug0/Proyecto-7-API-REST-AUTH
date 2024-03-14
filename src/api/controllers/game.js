@@ -1,3 +1,4 @@
+const Console = require("../models/console");
 const Game = require("../models/game");
 
 // GET
@@ -34,6 +35,13 @@ const postGame = async (req, res, next) => {
 		});
 
 		const saveGame = await newGame.save();
+
+		const consoleId = req.body.consoleId;
+
+		const console = await Console.findById(consoleId);
+		console.juegosCompatibles.push(saveGame._id);
+
+		await console.save();
 
 		return res.status(201).json(saveGame);
 	} catch (error) {

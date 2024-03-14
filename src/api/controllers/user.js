@@ -32,7 +32,7 @@ const registerUser = async (req, res, next) => {
 			userName: req.body.userName,
 			contraseña: req.body.contraseña,
 			añoNacimiento: req.body.añoNacimiento,
-			rol: "admin",
+			rol: req.body.rol,
 			imagenPerfil: req.body.imagenPerfil,
 		});
 
@@ -61,9 +61,7 @@ const login = async (req, res, next) => {
 				const token = generateSign(user._id);
 				return res.status(200).json({ user, token });
 			} else {
-				return res
-					.status(400)
-					.json("El nombre o la contraseña no son correctos");
+				return res.status(400).json("El nombre o la contraseña no son correctos");
 			}
 		} else {
 			return res.status(400).json("El nombre o la contraseña no son correctos");

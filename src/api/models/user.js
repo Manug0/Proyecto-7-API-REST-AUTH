@@ -7,7 +7,12 @@ const userSchema = new mongoose.Schema(
 		userName: { type: String, required: true },
 		contraseña: { type: String, required: true },
 		añoNacimiento: { type: Number, trim: true, required: true },
-		rol: { type: String, trim: true, required: true },
+		rol: {
+			type: String,
+			required: true,
+			default: "user",
+			enum: ["admin", "user"],
+		},
 		imagenPerfil: { type: String, trim: true, required: true },
 	},
 	{
